@@ -5,11 +5,11 @@
     <string name="dois">2</string>
     <string name="sete">7</string>
     <string name="ce">CE</string>
-    <string name="backspace">⌫</string>
     <string name="tres">3</string>
     <string name="seis">6</string>
     <string name="cinco">5</string>
     <string name="quatro">4</string>
     <string name="nove">9</string>
     <string name="oito">8</string>
+    <string name="backspace"><![CDATA[<-]]></string>
 </resources>
