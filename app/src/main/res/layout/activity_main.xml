@@ -8,13 +8,82 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/memoriaTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_margin="5dp"
+        android:textSize="30sp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/operadorTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_margin="5dp"
+        android:textSize="30sp"
+        android:text="" />
+
+    <TextView
         android:id="@+id/visorTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="end"
         android:layout_margin="5dp"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:text="" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/eraseBt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:textSize="25sp"
+            android:text="@string/ce" />
+
+        <Button
+            android:id="@+id/eraseAllBt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:textSize="25sp"
+            android:text="@string/c" />
+
+        <Button
+            android:id="@+id/backspaceBt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:textSize="25sp"
+            android:text="@string/backspace" />
+
+        <Button
+            android:id="@+id/divisionBt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:textSize="25sp"
+            android:text="@string/division" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/sete" />
 
         <Button
@@ -39,6 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/oito" />
 
         <Button
@@ -49,7 +120,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/nove" />
+
+        <Button
+            android:id="@+id/multiplicationBt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:textSize="25sp"
+            android:text="@string/multiplication" />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,6 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/quatro" />
 
         <Button
@@ -74,6 +159,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/cinco" />
 
         <Button
@@ -84,7 +170,19 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/seis" />
+
+        <Button
+            android:id="@+id/minusBt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:textSize="25sp"
+            android:text="@string/minus" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -99,6 +197,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/um" />
 
         <Button
@@ -109,6 +208,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/dois" />
 
         <Button
@@ -119,12 +219,35 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/tres" />
+
+        <Button
+            android:id="@+id/plusBt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:textSize="25sp"
+            android:text="@string/plus" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/plusMinusBt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:textSize="25sp"
+            android:text="@string/plusMinus" />
 
         <Button
             android:id="@+id/zeroBt"
@@ -134,27 +257,31 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
+            android:textSize="25sp"
             android:text="@string/zero" />
 
         <Button
-            android:id="@+id/backspaceBt"
+            android:id="@+id/commaBt"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="@string/backspace" />
+            android:textSize="25sp"
+            android:text="@string/comma" />
 
         <Button
-            android:id="@+id/apagarBt"
+            android:id="@+id/equalsBt"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="@string/ce" />
+            android:textSize="25sp"
+            android:text="@string/equals" />
+
     </LinearLayout>
 
 

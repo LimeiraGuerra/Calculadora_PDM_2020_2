@@ -11,5 +11,15 @@
     <string name="quatro">4</string>
     <string name="nove">9</string>
     <string name="oito">8</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="sair">Sair</string>
+    <string name="plusMinus">±</string>
+    <string name="c">C</string>
+    <string name="division">÷</string>
+    <string name="multiplication">×</string>
+    <string name="minus">−</string>
+    <string name="plus">+</string>
+    <string name="equals">=</string>
+    <string name="comma">,</string>
     <string name="backspace"><![CDATA[<-]]></string>
 </resources>
