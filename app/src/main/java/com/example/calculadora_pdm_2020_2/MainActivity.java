@@ -17,10 +17,10 @@ import java.text.ParseException;
 
 public class MainActivity extends AppCompatActivity {
     private final String VALOR_VISOR_TV = "valor_visor_tv";
+    private final String VALOR_MEMORIA_TV = "valor_memoria_tv";
+    private final String VALOR_OPERADOR_TV = "valor_operador_tv";
 
-    private TextView visorTv;
-    private TextView memoriaTv;
-    private TextView operadorTv;
+    private TextView visorTv, memoriaTv, operadorTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(VALOR_VISOR_TV, visorTv.getText().toString());
+        outState.putString(VALOR_MEMORIA_TV, memoriaTv.getText().toString());
+        outState.putString(VALOR_OPERADOR_TV, operadorTv.getText().toString());
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         visorTv.setText(savedInstanceState.getString(VALOR_VISOR_TV, ""));
+        memoriaTv.setText(savedInstanceState.getString(VALOR_MEMORIA_TV, ""));
+        operadorTv.setText(savedInstanceState.getString(VALOR_OPERADOR_TV, ""));
     }
 
     @Override
