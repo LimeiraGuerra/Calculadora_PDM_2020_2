@@ -5,5 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ConfiguracoesActivity">
+    <TextView
+        android:id="@+id/tipoCalculadoraTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tipo_calculadora"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/tipoCalculadoraRg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tipoCalculadoraTv">
+
+        <RadioButton
+            android:id="@+id/avancadoRb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/avancada" />
+
+        <RadioButton
+            android:id="@+id/basicaRb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/basica" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/salvarBt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tipoCalculadoraRg"
+        android:onClick="onClick"
+        android:text="@string/salvar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

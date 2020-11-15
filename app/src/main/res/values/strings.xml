@@ -13,7 +13,7 @@
     <string name="oito">8</string>
     <string name="configuracoes">Configurações</string>
     <string name="sair">Sair</string>
-    <string name="plusMinus">±</string>
+    <string name="plus_minus">±</string>
     <string name="c">C</string>
     <string name="division">÷</string>
     <string name="multiplication">×</string>
@@ -22,4 +22,12 @@
     <string name="equals">=</string>
     <string name="comma">,</string>
     <string name="backspace"><![CDATA[<-]]></string>
+    <string name="site_ifsp">Site IFSP</string>
+    <string name="chamar_ifps">Chamar Ifps</string>
+    <string name="tipo_calculadora">Tipo Calculadora</string>
+    <string name="avancada">Avançada</string>
+    <string name="basica">Básica</string>
+    <string name="raiz_quadrada">√</string>
+    <string name="salvar">Salvar</string>
+    <string name="potencia">^</string>
 </resources>

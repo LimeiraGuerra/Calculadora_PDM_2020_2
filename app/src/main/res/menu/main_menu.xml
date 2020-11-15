@@ -8,9 +8,20 @@
         android:icon="@drawable/ic_configuracoes"
         android:orderInCategory="1" />
     <item
+        android:id="@+id/chamarIfspMi"
+        android:title="@string/chamar_ifps"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_chamar"
+        android:orderInCategory="2" />
+    <item
+        android:id="@+id/siteIfspMi"
+        android:title="@string/site_ifsp"
+        app:showAsAction="never"
+        android:orderInCategory="3" />
+    <item
         android:id="@+id/sairMi"
         android:title="@string/sair"
         app:showAsAction="never"
         android:icon="@drawable/ic_sair"
-        android:orderInCategory="2" />
+        android:orderInCategory="4" />
 </menu>

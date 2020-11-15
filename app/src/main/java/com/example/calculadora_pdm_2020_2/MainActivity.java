@@ -1,14 +1,20 @@
 package com.example.calculadora_pdm_2020_2;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -20,7 +26,14 @@ public class MainActivity extends AppCompatActivity {
     private final String VALOR_MEMORIA_TV = "valor_memoria_tv";
     private final String VALOR_OPERADOR_TV = "valor_operador_tv";
 
+    private final int CALL_PHONE_PERMISSION_REQUEST_CODE = 0;
+    private final int CONFIGURACOES_REQUEST_CODE = 1;
+
+    public static final String EXTRA_CONFIGURACOES = "EXTRA_CONFIGURACOES";
+
     private TextView visorTv, memoriaTv, operadorTv;
+
+    private Configuracoes configuracoes = new Configuracoes(false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +70,24 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.configuracoesMi:
-                Intent configuracoesIntent = new Intent(this, ConfiguracoesActivity.class);
-                startActivity(configuracoesIntent);
+//                Intent configuracoesIntent = new Intent(this, ConfiguracoesActivity.class);
+//                startActivity(configuracoesIntent);
+                Intent configuracoesIntent = new Intent("CONFIGURACOES");
+                configuracoesIntent.putExtra(EXTRA_CONFIGURACOES, configuracoes);
+                startActivityForResult(configuracoesIntent, CONFIGURACOES_REQUEST_CODE);
+                return true;
+            case R.id.siteIfspMi:
+                Uri siteIfspUri = Uri.parse("https://www.ifsp.edu.br");
+                Intent siteIfspIntent = new Intent(Intent.ACTION_VIEW, siteIfspUri);
+                startActivity(siteIfspIntent);
+                return true;
+            case R.id.chamarIfspMi:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[] {Manifest.permission.CALL_PHONE}, CALL_PHONE_PERMISSION_REQUEST_CODE);
+                    }
+                }
+                chamarIfsp();
                 return true;
             case R.id.sairMi:
                 finish();
@@ -68,8 +97,49 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CONFIGURACOES_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            configuracoes = data.getParcelableExtra(EXTRA_CONFIGURACOES);
+            if (configuracoes != null && configuracoes.getAvancada()) {
+                findViewById(R.id.configAvancadaLL).setVisibility(View.VISIBLE);
+            }
+            else {
+                findViewById(R.id.configAvancadaLL).setVisibility(View.GONE);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CALL_PHONE_PERMISSION_REQUEST_CODE) {
+            for (int resultado: grantResults) {
+                if (resultado != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Permissão necessária não concedida", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+            chamarIfsp();
+        }
+    }
+
+    private void chamarIfsp(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                Uri chamarIfspUri = Uri.parse("tel:1137754501");
+                Intent chamarIfspIntent = new Intent(Intent.ACTION_CALL, chamarIfspUri);
+                startActivity(chamarIfspIntent);
+            }
+        }
+    }
+
     public void onClick(View view) {
         StringBuilder sb = new StringBuilder(visorTv.getText());
+        if (sb.toString().equals("Erro")) {
+            sb.setLength(0);
+        }
         switch (view.getId()){
             case R.id.zeroBt:
                 sb.append(getString(R.string.zero));
@@ -177,6 +247,29 @@ public class MainActivity extends AppCompatActivity {
                     changeMemoryValues("", "");
                 }
                 break;
+            case R.id.raizQuadradaBt:
+                if (sb.length() > 0) {
+                    NumberFormat nf = new DecimalFormat("#.############################");
+                    Double result = Math.sqrt(stringToNumber(sb.toString(), nf));
+                    sb.setLength(0);
+                    sb.append(nf.format(result).replaceAll("\\.", ","));
+                }
+                break;
+            case R.id.potenciaBt:
+                if (sb.length() > 0) {
+                    if (operadorTv.getText().length() > 0) {
+                        changeMemoryValues(calculateResult(sb.toString()), getString(R.string.potencia));
+                    }
+                    else {
+                        changeMemoryValues(sb.toString(), getString(R.string.potencia));
+                    }
+                    sb.setLength(0);
+                }
+                break;
+        }
+        if (sb.toString().equals("NaN")) {
+            sb.setLength(0);
+            sb.append("Erro");
         }
         visorTv.setText(sb.toString());
     }
@@ -201,6 +294,9 @@ public class MainActivity extends AppCompatActivity {
                 result = stringToNumber(memoriaTv.getText().toString(), nf)
                         * stringToNumber(primaryValue, nf);
                 break;
+            case "^":
+                result = Math.pow(stringToNumber(memoriaTv.getText().toString(), nf),
+                        stringToNumber(primaryValue, nf));
         }
         return nf.format(result).replaceAll("\\.", ",");
     }
