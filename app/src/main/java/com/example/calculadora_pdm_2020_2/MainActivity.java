@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         StringBuilder sb = new StringBuilder(visorTv.getText());
-        if (sb.toString().equals("Erro")) {
+        if (sb.toString().equals("Erro") || sb.toString().equals("∞")) {
             sb.setLength(0);
         }
         switch (view.getId()){

@@ -21,7 +21,6 @@
     <string name="plus">+</string>
     <string name="equals">=</string>
     <string name="comma">,</string>
-    <string name="backspace"><![CDATA[<-]]></string>
     <string name="site_ifsp">Site IFSP</string>
     <string name="chamar_ifps">Chamar Ifps</string>
     <string name="tipo_calculadora">Tipo Calculadora</string>
@@ -30,4 +29,5 @@
     <string name="raiz_quadrada">√</string>
     <string name="salvar">Salvar</string>
     <string name="potencia">^</string>
+    <string name="backspace">⌫</string>
 </resources>
